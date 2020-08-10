@@ -25,6 +25,7 @@ https://th3az-react-recipe.herokuapp.com/
 ### Logins available by default
 **NONE**
 
+---
 
 ### Challenge from
 https://www.hackerearth.com/challenges/hiring/coda-global-frontend-superhero-hiring-challenge-july20
