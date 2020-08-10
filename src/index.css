@@ -1,0 +1,84 @@
+/*=====================================================
+ * For theme colors look in to themes directory.
+ * Without theme colors it will not look good.
+ * There are no fall back colors.
+ *=====================================================
+*/
+
+/* General Variables*/
+:root {
+	--bg-color-1: 255, 255, 255;
+	--bg-color-2: 240, 240, 240;
+	--color: 0, 0, 0;
+	--color-green: 0, 10, 10;
+	--color-yellow: 241, 196, 15;
+}
+
+@media only screen and (min-width: 1px) and (max-width: 480px) {
+  :root {
+	}
+
+}
+@media only screen and (min-width: 480px) and (max-width: 768px) {
+  :root {
+	}
+}
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  :root {
+	}
+}
+@media only screen and (min-width: 1024px)  {
+  :root {
+	}
+}
+
+html,
+body {
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	/*position: relative;*/
+	display: block;
+	height: auto;
+	margin: 0;
+	padding: 0;
+	/*overflow-y: auto;*/
+	font-family: Metropolis;
+	background: rgb(var(--bg-color-2));
+	background-blend-mode: difference;
+	transition: 0.5s;
+}
+
+body {
+	transition: 0.5s;
+}
+
+body,
+body * {
+	color: rgb(var(--color));
+	font-weight: 300;
+	box-sizing: border-box;
+	outline: 0 !important;
+	transition: 0.5s;
+}
+
+body * input {
+  outline: none;
+}
+
+body * button,
+body * input[type=button],
+body * input[type=submit],
+body * input[type=reset] {
+	border: none !important;
+	margin: 0;
+	padding: 0;
+	text-align: center;
+	cursor: pointer;
+  outline: none;
+}
+
+#root {
+	/*position: relative;*/
+	display: block;
+	width: 100%;
+}

@@ -1,0 +1,350 @@
+.OverlayRecipeDetails {
+	position: fixed;
+	z-index: 99;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+	width: 100%;
+	top: 0;
+	left: 0;
+	background-color: rgba(var(--bg-color-1), 0.8);
+}
+
+.OverlayRecipeDetails .OverlayCard {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	width: 65%;
+	height: auto;
+	min-width: 290px;
+	min-height: 400px;
+	max-width: 800px;
+	max-height: 500px;
+	overflow: hidden;
+	border-radius: 3px;
+	box-shadow: 0px 10px 70px -20px rgba(0, 0, 0, 0.5);
+	opacity: 0;
+	transform: scale(0.5);
+	animation: GrowBox 0.2s ease-out 0s 1 normal forwards;
+}
+@keyframes GrowBox {
+	to {
+		opacity: 1;
+		transform: scale(1);
+	}
+}
+
+.OverlayRecipeDetails .OverlayCard .CloseBTN {
+	position: absolute;
+	z-index: 5;
+	right: 5px;
+	top: 5px;
+	overflow: hidden;
+	height: 50px;
+	width: 50px;
+}
+
+.OverlayRecipeDetails .OverlayCard .CloseBTN button {
+	cursor: pointer;
+	background-color: transparent;
+	height: 100%;
+	width: 100%;
+}
+
+.OverlayRecipeDetails .OverlayCard .CloseBTN button svg path {
+	fill: rgba(255, 107, 107, 0.6);
+	stroke: rgba(255, 107, 107, 0.6);
+	stroke-width: 20px;
+	transition: 0.2s ease-out;
+}
+
+.OverlayRecipeDetails .OverlayCard .CloseBTN button:hover svg path,
+.OverlayRecipeDetails .OverlayCard .CloseBTN button:focus svg path {
+	fill: rgba(255, 107, 107, 1);
+	stroke: rgba(255, 107, 107, 1);
+	transition: 0.2s ease-in;
+}
+
+.OverlayRecipeDetails .OverlayCard .CloseBTN button:active svg path {
+	fill: rgba(0, 0, 0, 1);
+	stroke: rgba(0, 0, 0, 1);
+	transition: 0.2s ease-out;
+}
+
+.OverlayRecipeDetails .OverlayCard .CloseBTN button svg path:nth-child(1) {
+	display: none;
+}
+
+.OverlayRecipeDetails .OverlayCard {
+	position: relative;
+	display: flex;
+	flex-direction: row;
+	overflow-y: hidden;
+	height: 100%;
+}
+
+.OverlayRecipeDetails .ORecipeCard {
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+	height: 100%;
+}
+
+.OverlayRecipeDetails .ORecipeCard > div {
+	display: inline-flex;
+	flex-direction: column;
+	width: 50%;
+	height: 100%;
+}
+
+.OverlayRecipeDetails .ORecipeCard .part1 {
+	position: relative;
+	overflow: hidden;
+}
+
+.OverlayRecipeDetails .ORecipeCard .part1 .label {
+	z-index: 2;
+	position: absolute;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 30px;
+	width: 45%;
+	right: 0;
+	top: 0;
+	font-size: 16px;
+	font-weight: 400;
+	letter-spacing: 1px;
+	text-transform: capitalize;
+	border-bottom-left-radius: 10px;
+	background-color: rgba(var(--color-green), 0.8);
+	color: rgba(var(--bg-color-1));
+}
+
+.OverlayRecipeDetails .ORecipeCard .part1 .ImageWrapper {
+	width: 100%;
+	height: 90%;
+}
+.OverlayRecipeDetails .ORecipeCard .part1 .ImageWrapper div {
+	width: 100%;
+	height: 100%;
+}
+.OverlayRecipeDetails .ORecipeCard .part1 .ImageWrapper div img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+.OverlayRecipeDetails .ORecipeCard:hover .part1 .ImageWrapper div img {
+	transform: scale(1.02);
+}
+
+.OverlayRecipeDetails .ORecipeCard .part1 .Details {
+	position: absolute;
+	display: block;
+	bottom: -20%;
+	left: 0;
+	width: 100%;
+	height: 60%;
+	padding: 25px;
+	padding-top: 25%;
+	text-transform: capitalize;
+}
+.OverlayRecipeDetails .ORecipeCard:hover .part1 .Details {
+	transform: translateY(-5px);
+}
+.OverlayRecipeDetails .ORecipeCard.Black .part1 .Details {
+	padding-top: 35%;
+	background: rgb(0,0,0);
+	background: -moz-linear-gradient(0deg, rgba(var(--color-green), 1) 0%, rgba(var(--color-green),1) 50%, rgba(255,0,0,0) 100%);
+	background: -webkit-linear-gradient(0deg, rgba(var(--color-green),1) 0%, rgba(var(--color-green),1) 50%, rgba(255,0,0,0) 100%);
+	background: linear-gradient(0deg, rgba(var(--color-green),1) 0%, rgba(var(--color-green),1) 50%, rgba(255,0,0,0) 100%);
+}
+.OverlayRecipeDetails .ORecipeCard.Black .part1 .Details * {
+	color: rgba(var(--bg-color-1));
+}
+.OverlayRecipeDetails .ORecipeCard.White .part1 .Details {
+	color: rgba(var(--bg-color-1));
+	background: rgb(var(--bg-color-1));
+	background: -moz-linear-gradient(0deg, rgba(var(--bg-color-1),1) 0%, rgba(var(--bg-color-1),1) 50%, rgba(255,0,0,0) 100%);
+	background: -webkit-linear-gradient(0deg, rgba(var(--bg-color-1),1) 0%, rgba(var(--bg-color-1),1) 50%, rgba(255,0,0,0) 100%);
+	background: linear-gradient(0deg, rgba(var(--bg-color-1),1) 0%, rgba(var(--bg-color-1),1) 50%, rgba(255,0,0,0) 100%);
+}
+.OverlayRecipeDetails .ORecipeCard.White .part1 .Details * {
+	color: rgba(var(--color));
+}
+
+.OverlayRecipeDetails .ORecipeCard.White .part1 .Details .extras {
+	display: block;
+}
+.OverlayRecipeDetails .ORecipeCard .part1 .Details .extras span {
+	display: block;
+}
+.OverlayRecipeDetails .ORecipeCard .part1 .Details .extras span.price {
+	font-size: 20px;
+}
+.OverlayRecipeDetails .ORecipeCard .part1 .Details .extras span.category {
+	margin: 0;
+	font-weight: 500;
+	letter-spacing: 1px;
+}
+.OverlayRecipeDetails .ORecipeCard .part1 .Details .extras span.category::before {
+	display: none;
+}
+
+.OverlayRecipeDetails .ORecipeCard .part1 .Details .Like {
+	z-index: 3;
+	position: absolute;
+	right: 25px;
+	bottom: 35%;
+}
+.OverlayRecipeDetails .ORecipeCard.Black .part1 .Details .Like {
+	bottom: 39%;
+}
+
+.OverlayRecipeDetails .ORecipeCard .part1 .Details .Like .cb_like {
+	display: none;
+}
+.OverlayRecipeDetails .ORecipeCard .part1 .Details .Like label {
+	height: 30px;
+	width: 30px;
+	cursor: pointer;
+}
+.OverlayRecipeDetails .ORecipeCard .part1 .Details .Like label img {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+}
+.OverlayRecipeDetails .ORecipeCard .part1 .Details .Like label img.UnLikedIMG {
+	opacity: 1;
+}
+.OverlayRecipeDetails .ORecipeCard.Black .part1 .Details .Like label img.UnLikedIMG {
+	filter: invert(100%);
+	-webkit-filter: invert(100%);
+	-moz-filter: invert(100%);
+}
+.OverlayRecipeDetails .ORecipeCard .part1 .Details .Like label img.LikedIMG {
+	opacity: 0;
+}
+.OverlayRecipeDetails .ORecipeCard .part1 .Details .Like label.Liked img.UnLikedIMG {
+	opacity: 0;
+}
+.OverlayRecipeDetails .ORecipeCard .part1 .Details .Like label.Liked img.LikedIMG {
+	opacity: 1;
+}
+
+
+.OverlayRecipeDetails .ORecipeCard .part2 {
+	position: relative;
+	display: block;
+	overflow: hidden;
+	padding: 20px;
+	padding-top: 50px;
+	text-align: right;
+}
+.OverlayRecipeDetails .ORecipeCard.Black .part2 {
+	background-color: rgba(var(--color-green));
+}
+.OverlayRecipeDetails .ORecipeCard.White .part2 {
+	background-color: rgba(var(--bg-color-1));
+}
+.OverlayRecipeDetails .ORecipeCard .part2 .Details {
+	display: block;
+	height: 100%;
+}
+.OverlayRecipeDetails .ORecipeCard.Black .part2 .Details * {
+	color: rgba(var(--bg-color-1));
+}
+.OverlayRecipeDetails .ORecipeCard.White .part2 .Details {
+	color: rgba(var(--bg-color-1));
+	background: rgb(var(--bg-color-1));
+	background: -moz-linear-gradient(0deg, rgba(var(--bg-color-1),1) 0%, rgba(var(--bg-color-1),1) 50%, rgba(255,0,0,0) 100%);
+	background: -webkit-linear-gradient(0deg, rgba(var(--bg-color-1),1) 0%, rgba(var(--bg-color-1),1) 50%, rgba(255,0,0,0) 100%);
+	background: linear-gradient(0deg, rgba(var(--bg-color-1),1) 0%, rgba(var(--bg-color-1),1) 50%, rgba(255,0,0,0) 100%);
+}
+.OverlayRecipeDetails .ORecipeCard.White .part2 .Details * {
+	color: rgba(var(--color));
+}
+.OverlayRecipeDetails .ORecipeCard .part2 .Details .Name {
+	font-size: 35px;
+	font-weight: 800;
+	text-transform: capitalize;
+}
+.OverlayRecipeDetails .ORecipeCard .part2 .Details .Description {
+	font-size: 20px;
+	font-weight: 400;
+	opacity: 0.8;
+}
+.OverlayRecipeDetails .ORecipeCard .part2 .Details .Name span {
+	font-weight: 700;
+}
+.OverlayRecipeDetails .ORecipeCard .part2 .Details .Description span {
+	font-weight: 400;
+}
+.OverlayRecipeDetails .ORecipeCard .part2 .Details .Description2 {
+	margin-top: 20px;
+	opacity: 0.7;
+}
+.OverlayRecipeDetails .ORecipeCard .part2 .Details .Description2 span {
+  display: -webkit-box;
+	font-size: 16px;
+	font-weight: 200;
+	letter-spacing: 1px;
+	text-align: justify;
+  -webkit-line-clamp: 10;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+@media only screen and (min-width: 1px) and (max-width: 768px) {
+
+  .OverlayRecipeDetails .ORecipeCard {
+		display: flex;
+		flex-direction: column;
+	}
+	.OverlayRecipeDetails .OverlayCard .ORecipeCardWrapper {
+		overflow: auto;
+	}
+	.OverlayRecipeDetails .OverlayCard .CloseBTN {
+		position: fixed;
+		background-color: rgba(0,0,0,0.6);
+		border-radius: 50%;
+	}
+  .OverlayRecipeDetails .ORecipeCard > div {
+		flex-direction: column;
+		width: 100%;
+		height: auto;
+	}
+	.OverlayRecipeDetails .ORecipeCard .part1 .label {
+		left: 0;
+		border-bottom-left-radius: 0px;
+		border-bottom-right-radius: 10px;
+	}
+	.OverlayRecipeDetails .ORecipeCard .part1,
+	.OverlayRecipeDetails .ORecipeCard .part2 {
+		overflow: unset;
+	}
+	.OverlayRecipeDetails .ORecipeCard .part1 .Details {
+		padding: 0;
+		padding-top: 50% !important;
+		bottom: -20%;
+	}
+	.OverlayRecipeDetails .ORecipeCard .part1 .Details .Like {
+		z-index: 0;
+		bottom: 0 !important;
+		transform: translateY(-200%);
+	}
+	.OverlayRecipeDetails .ORecipeCard .part1 .Details .extras {
+		z-index: 0;
+		position: absolute;
+		left: 25px;
+		bottom: 0 !important;
+		transform: translateY(-160%);
+	}
+	.OverlayRecipeDetails .ORecipeCard .part2 .Details .Description2 span {
+		display: block;
+		overflow: unset;
+	}
+}

@@ -1,0 +1,358 @@
+.Recipes {
+}
+
+.Recipes > .Title {
+	display: block;
+	text-align: right;
+  font-size: 45px;
+	font-weight: 800;
+}
+
+.Recipes > .NoRecipes,
+.Recipes > .NoRecipes span {
+	display: block;
+	text-align: center;
+  font-size: 20px;
+}
+.Recipes > .NoRecipes .Title {
+	display: block;
+  font-size: 30px;
+	font-weight: 400;
+	color: rgba(var(--color-red), 1);
+}
+
+/*
+* =======================================================
+* Normal Card
+* =======================================================
+*/
+:root {
+	--RecipeCard-MinWidth: 238px;
+}
+
+.RecipeCards {
+	display: block;
+	min-width: calc(var(--RecipeCard-MinWidth) * 4);
+	max-width: 100%;
+	text-align: center;
+	-moz-column-count: 4;
+	-webkit-column-count: 4;
+	column-count: 4;
+	-moz-column-gap: 15px;
+	-webkit-column-gap: 15px;
+	column-gap: 15px;
+}
+
+.RecipeCards > .RecipeCard {
+	flex-grow: 0;
+	flex-shrink: 0;
+	display: inline-block;
+	position: relative;
+	min-width: 238px;
+	width: 100%;
+	height: 310px;
+	border-radius: 15px;
+	overflow: hidden;
+	margin-bottom: 10px;
+	text-align: left;
+	box-shadow: 0px 0px 30px 0px rgba(var(--color), 0.1);
+	background-color: white;
+	transition: 0.2s ease-in;
+}
+
+.RecipeCards > .RecipeCard.Black {
+	background-color: black;
+	height: 400px;
+}
+
+.RecipeCard .label {
+	z-index: 1;
+	position: absolute;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 25px;
+	width: 45%;
+	right: 0;
+	top: 0;
+	font-size: 13px;
+	text-transform: capitalize;
+	border-bottom-left-radius: 10px;
+	background-color: rgba(var(--color-green), 0.8);
+	color: rgba(var(--bg-color-1));
+}
+
+@media only screen and (min-width: 0) and (max-width: 768px) {
+  .RecipeCards {
+		min-width: calc(var(--RecipeCard-MinWidth) * 1);
+		-moz-column-count: 1;
+		-webkit-column-count: 1;
+		column-count: 1;
+		transition: 1s ease-in;
+	}
+  .RecipeCards .RecipeCard {
+		width: 90%;
+		max-width: 330px;
+	}
+}
+@media only screen and (min-width: 768px) and (max-width: 1000px) {
+  .RecipeCards {
+		min-width: calc(var(--RecipeCard-MinWidth) * 2);
+		-moz-column-count: 2;
+		-webkit-column-count: 2;
+		column-count: 2;
+	}
+  .RecipeCards .RecipeCard {
+		width: 90%;
+		max-width: 330px;
+	}
+}
+@media only screen and (min-width: 1000px) and (max-width: 1250px) {
+  .RecipeCards {
+		min-width: calc(var(--RecipeCard-MinWidth) * 3);
+		-moz-column-count: 3;
+		-webkit-column-count: 3;
+		column-count: 3;
+	}
+  .RecipeCards .RecipeCard {
+		width: 90%;
+		max-width: 330px;
+	}
+}
+@media only screen and (min-width: 1250px)  {
+  .RecipeCards {
+		-moz-column-count: 4;
+		-webkit-column-count: 4;
+		column-count: 4;
+	}
+}
+
+.RecipeCard .ImageWrapper {
+	height: 70%;
+}
+.RecipeCard .ImageWrapper div {
+	height: 100%;
+}
+.RecipeCard .ImageWrapper div img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+.RecipeCard .ImageWrapper div img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+.RecipeCard:hover .ImageWrapper div img {
+	transform: scale(1.05);
+}
+
+.RecipeCard .Details {
+	position: absolute;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: stretch;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 60%;
+	padding: 25px;
+	padding-top: 25%;
+}
+.RecipeCard:hover .Details {
+	transform: translateY(-60px);
+}
+.RecipeCard.Black .Details {
+	padding-top: 35%;
+}
+.RecipeCard.Black .Details {
+	background: rgb(0,0,0);
+	background: -moz-linear-gradient(0deg, rgba(var(--color-green), 1) 0%, rgba(var(--color-green),1) 50%, rgba(255,0,0,0) 100%);
+	background: -webkit-linear-gradient(0deg, rgba(var(--color-green),1) 0%, rgba(var(--color-green),1) 50%, rgba(255,0,0,0) 100%);
+	background: linear-gradient(0deg, rgba(var(--color-green),1) 0%, rgba(var(--color-green),1) 50%, rgba(255,0,0,0) 100%);
+}
+.RecipeCard.Black .Details * {
+	color: rgba(var(--bg-color-1));
+}
+.RecipeCard.White .Details {
+	color: rgba(var(--bg-color-1));
+	background: rgb(255,255,255);
+	background: -moz-linear-gradient(0deg, rgba(var(--bg-color-1),1) 0%, rgba(var(--bg-color-1),1) 50%, rgba(255,0,0,0) 100%);
+	background: -webkit-linear-gradient(0deg, rgba(var(--bg-color-1),1) 0%, rgba(var(--bg-color-1),1) 50%, rgba(255,0,0,0) 100%);
+	background: linear-gradient(0deg, rgba(var(--bg-color-1),1) 0%, rgba(var(--bg-color-1),1) 50%, rgba(255,0,0,0) 100%);
+}
+.RecipeCard.White .Details * {
+	color: rgba(var(--color));
+}
+
+.RecipeCard .Details .Like {
+	z-index: 3;
+	position: absolute;
+	right: 25px;
+	bottom: 35%;
+}
+.RecipeCard.Black .Details .Like {
+	bottom: 39%;
+}
+.RecipeCard .Details .Like .cb_like {
+	display: none;
+}
+.RecipeCard .Details .Like label {
+	height: 30px;
+	width: 30px;
+	cursor: pointer;
+}
+.RecipeCard .Details .Like label img {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+}
+.RecipeCard .Details .Like label img.UnLikedIMG {
+	opacity: 1;
+}
+.RecipeCard.Black .Details .Like label img.UnLikedIMG {
+	filter: invert(100%);
+	-webkit-filter: invert(100%);
+	-moz-filter: invert(100%);
+}
+.RecipeCard .Details .Like label img.LikedIMG {
+	opacity: 0;
+}
+.RecipeCard .Details .Like label.Liked img.UnLikedIMG {
+	opacity: 0;
+}
+.RecipeCard .Details .Like label.Liked img.LikedIMG {
+	opacity: 1;
+}
+
+.RecipeCard .Name {
+	position: relative;
+	display: block;
+	margin-right: 35px;
+	text-transform: capitalize;
+}
+.RecipeCard .Name span {
+	font-size: 19px;
+	font-weight: 600;
+}
+
+.RecipeCard .extras {
+	position: relative;
+	display: block;
+	margin-right: 35px;
+}
+.RecipeCard .extras span {
+	position: relative;
+	display: inline-block;
+	font-weight: 200;
+}
+.RecipeCard .extras span.category {
+	position: relative;
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	margin-left: 25px;
+	text-transform: capitalize;
+}
+.RecipeCard .extras span.category::before {
+	position: absolute;
+	display: block;
+	content: "●";
+	color: white;
+	opacity: 0.5;
+	font-size: small;
+	mix-blend-mode: difference;
+	left: -15px;
+}
+
+.RecipeCard .Description {
+	position: relative;
+	display: flex;
+	line-height: 15px;
+	overflow: hidden;
+}
+.RecipeCard .Description span {
+  display: -webkit-box;
+	font-size: 12px;
+	font-weight: 200;
+	letter-spacing: 1px;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+
+.RecipeCard .HoverDetails {
+	z-index: -1;
+	position: absolute;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	bottom: 0;
+	height: 75px;
+	width: 100%;
+	opacity: 0;
+	transform: translateY(75px);
+	transition: 0.5s ease-in-out;
+}
+.RecipeCard.Black .HoverDetails {
+	background-color: rgba(var(--color-green));
+}
+.RecipeCard.White .HoverDetails {
+	background-color: rgba(var(--bg-color));
+}
+.RecipeCard:hover .HoverDetails {
+	transform: translateY(0px);
+	z-index: 3;
+	opacity: 1;
+	transition: 0.3s ease-in-out;
+}
+.RecipeCard .HoverDetails .Buttons {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0px 25px;
+	height: 100%;
+	width: 100%;
+	opacity: 0.95;
+}
+.RecipeCard .HoverDetails .Buttons button {
+	flex-grow: 1;
+	display: inline-block;
+	background-color: transparent;
+	font-size: 75%;
+	font-weight: 400;
+	padding: 10px;
+	border-radius: 7px !important;
+	margin-left: 5px;
+	margin-right: 5px;
+}
+.RecipeCard.Black .HoverDetails .Buttons button {
+	border: 1px solid wheat !important;
+	color: wheat;
+}
+.RecipeCard.White .HoverDetails .Buttons button {
+	border: 1px solid rgba(var(--color-green)) !important;
+	color: rgba(var(--color-green));
+}
+.RecipeCard .HoverDetails .Buttons button:hover {
+	flex-grow: 1;
+	display: inline-block;
+	border: 1px solid transparent !important;
+	font-size: 75%;
+	font-weight: 400;
+	padding: 10px;
+	border-radius: 7px !important;
+	margin-left: 5px;
+	margin-right: 5px;
+}
+.RecipeCard.Black .HoverDetails .Buttons button:hover {
+	background-color: wheat;
+	color:  rgba(var(--color-green));
+}
+.RecipeCard.White .HoverDetails .Buttons button:hover {
+	background-color: rgba(var(--color-green));
+	color: wheat;
+}

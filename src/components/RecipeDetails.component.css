@@ -1,0 +1,333 @@
+.PageWrapper {
+	z-index: 1;
+	position: relative;
+}
+
+.PageWrapper .BackBTN {
+	font-size: 18px;
+}
+.PageWrapper .BackBTN > button > div.arrow {
+	display: inline-block;
+	transform: rotateZ(-180deg);
+	font-size: 25px;
+	font-weight: 600;
+}
+.PageWrapper .BackBTN > button > span.text {
+	font-weight: 500;
+}
+
+.RecipeDetailsWrapper {
+	padding-top: 30px;
+}
+
+.RecipeDetailsWrapper > .RecipeDetails {
+	display: flex;
+	flex-direction: row;
+}
+.RecipeDetailsWrapper > .RecipeDetails > div {
+	width: 50%;
+}
+.RecipeDetailsWrapper > .RecipeDetails > div.part1 {
+	min-width: 50%;
+	margin-right: 25px;
+}
+.RecipeDetailsWrapper > .RecipeDetails > div.part2 {
+	margin-left: 100px;
+}
+
+.RecipeDetailsWrapper > .RecipeDetails > .part1 .ImageWrapper {
+	position: relative;
+	height: 300px;
+	overflow: hidden;
+	border-radius: 15px;
+}
+.RecipeDetailsWrapper > .RecipeDetails > .part1 .ImageWrapper > .ImagePlayCover {
+	z-index: 1;
+	position: absolute;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+	width: 100%;
+	top: 0;
+	left: 0;
+	background-color: rgba(0,0,0,0.7);
+}
+.RecipeDetailsWrapper > .RecipeDetails > .part1 .ImageWrapper > .ImagePlayCover > img {
+	width: 50px;
+	height: auto;
+	transform: none;
+}
+.RecipeDetailsWrapper > .RecipeDetails > .part1 .ImageWrapper > .ImagePlayCover > span.Title {
+	font-size: 16px;
+	color: white;
+	font-weight: 400;
+}
+.RecipeDetailsWrapper > .RecipeDetails > .part1 .ImageWrapper:hover > .ImagePlayCover > img {
+	filter: drop-shadow(0px 0px 10px rgba(255, 255, 255, 0.7));
+	transform: none;
+}
+.RecipeDetailsWrapper > .RecipeDetails > .part1 .ImageWrapper img {
+	display: block;
+	width: 100%;
+	object-fit: cover;
+}
+.RecipeDetailsWrapper > .RecipeDetails > .part1 .ImageWrapper:hover img {
+	transform: scale(1.05);
+}
+
+.RecipeDetailsWrapper > .RecipeDetails > .part1 > .Ingredients,
+.RecipeDetailsWrapper > .RecipeDetails > .part1 > .Preparation {
+	display: block;
+	padding-top: 30px;
+	padding-bottom: 20px;
+}
+.RecipeDetailsWrapper > .RecipeDetails > .part1 > .Ingredients > .title,
+.RecipeDetailsWrapper > .RecipeDetails > .part1 > .Preparation > .title {
+	display: block;
+	font-size: 20px;
+	font-weight: 700;
+	margin-bottom: 20px;
+	opacity: 0.8;
+}
+.RecipeDetailsWrapper > .RecipeDetails > .part1 > .Ingredients > .content,
+.RecipeDetailsWrapper > .RecipeDetails > .part1 > .Preparation > .content {
+	line-height: 18px;
+	font-size: 13px;
+	font-weight: 500;
+	opacity: 0.5;
+	display: -webkit-box;
+  -webkit-line-clamp: 6;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.RecipeDetailsWrapper > .RecipeDetails > .part1 > .Preparation > .content {
+  -webkit-line-clamp: 10;
+}
+
+
+.RecipeDetailsWrapper > .RecipeDetails > .part2 > .Details {
+	text-align: right;
+}
+.RecipeDetailsWrapper > .RecipeDetails > .part2 > .Details > .Name {
+	display: block;
+	line-height: 45px;
+	font-size: 40px;
+	text-align: right;
+	text-transform: capitalize;
+	margin-bottom: 25px;
+}
+.RecipeDetailsWrapper > .RecipeDetails > .part2 > .Details > .Name::before {
+	display: block;
+	content: "Recipe";
+	line-height: 13px;
+	font-size: 13px;
+	padding-bottom: 10px;
+	opacity: 0.5;
+	text-transform: uppercase;
+}
+.RecipeDetailsWrapper > .RecipeDetails > .part2 > .Details > .Name >span {
+	font-weight: 800;
+}
+
+.RecipeDetailsWrapper > .RecipeDetails > .part2 > .Details > .Description {
+	display: block;
+	line-height: 25px;
+	font-size: 20px;
+	text-align: right;
+	text-transform: capitalize;
+	margin-bottom: 20px;
+	opacity: 0.7;
+}
+.RecipeDetailsWrapper > .RecipeDetails > .part2 > .Details > .Description::before {
+	display: block;
+	content: "Description";
+	line-height: 13px;
+	font-size: 13px;
+	padding-bottom: 10px;
+	opacity: 0.7;
+	text-transform: uppercase;
+}
+.RecipeDetailsWrapper > .RecipeDetails > .part2 > .Details > .Description >span {
+	font-weight: 500;
+}
+
+.RecipeDetailsWrapper > .RecipeDetails > .part2 > .Details > .Description2 {
+	display: block;
+	text-align: right;
+	text-transform: capitalize;
+	margin-bottom: 20px;
+	opacity: 0.7;
+	text-align: justify;
+	text-indent: 25%;
+}
+.RecipeDetailsWrapper > .RecipeDetails > .part2 > .Details > .Description2 > span {
+	line-height: 18px;
+	font-size: 13px;
+	display: -webkit-box;
+	font-weight: 500;
+  -webkit-line-clamp: 6;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.RecipeDetailsWrapper > .RecipeDetails > .part2 > .Details > .Extras {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin: 45px 0px;
+}
+.RecipeDetailsWrapper > .RecipeDetails > .part2 > .Details > .Extras > div {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: 100px;
+	width: 100px;
+	border-radius: 50%;
+	background-color: rgba(var(--color-green));
+	text-transform: lowercase;
+}
+.RecipeDetailsWrapper > .RecipeDetails > .part2 > .Details > .Extras > div > span {
+	color: white;
+}
+.RecipeDetailsWrapper > .RecipeDetails > .part2 > .Details > .Extras > div > span.Value {
+	line-height: 40px;
+	font-size: 40px;
+	font-weight: 400;
+}
+.RecipeDetailsWrapper > .RecipeDetails > .part2 > .Details > .Extras > div > span.Text {
+	font-size: 11px;
+	font-weight: 400;
+}
+
+.RecipeDetailsWrapper > .RecipeDetails > .part2 > .Favourite {
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	margin-bottom: 40px;
+}
+.RecipeDetailsWrapper > .RecipeDetails > .part2 > .Favourite > .Text{
+	letter-spacing: 1px;
+	font-size: 14px;
+	margin-right: 20px;
+	text-transform: uppercase;
+	font-weight: 500;
+}
+.RecipeDetailsWrapper > .RecipeDetails > .part2 > .Favourite > .Like {
+	display: block;
+	position: relative;
+	height: 30px;
+	width: 30px;
+}
+.RecipeDetailsWrapper > .RecipeDetails > .part2 > .Favourite > .Like .cb_like {
+	display: none;
+}
+.RecipeDetailsWrapper > .RecipeDetails > .part2 > .Favourite > .Like label {
+	height: 30px;
+	width: 30px;
+	margin: 0;
+	padding: 0;
+	cursor: pointer;
+}
+.RecipeDetailsWrapper > .RecipeDetails > .part2 > .Favourite > .Like label img {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+}
+.RecipeDetailsWrapper > .RecipeDetails > .part2 > .Favourite > .Like label img.UnLikedIMG {
+	opacity: 1;
+}
+.RecipeDetailsWrapper > .RecipeDetails > .part2 > .Favourite > .Like label img.LikedIMG {
+	opacity: 0;
+}
+.RecipeDetailsWrapper > .RecipeDetails > .part2 > .Favourite > .Like label.Liked img.UnLikedIMG {
+	opacity: 0;
+}
+.RecipeDetailsWrapper > .RecipeDetails > .part2 > .Favourite > .Like label.Liked img.LikedIMG {
+	opacity: 1;
+}
+
+.RecipeDetailsWrapper > .RecipeDetails > .part2 > hr {
+	border: 1px solid black;
+	opacity: 0.1;
+	margin: 0;
+	margin-bottom: 25px;
+}
+
+.RecipeDetailsWrapper > .RecipeDetails > .part2 > .Comment,
+.RecipeDetailsWrapper > .RecipeDetails > .part2 > .Comment * {
+	display: block;
+	text-transform: uppercase;
+	margin: 10px 0px;
+}
+.RecipeDetailsWrapper > .RecipeDetails > .part2 > .Comment > .Title {
+	line-height: 15px;
+	font-size: 11px;
+	opacity: 0.5;
+	margin-left: 15px;
+}
+.RecipeDetailsWrapper > .RecipeDetails > .part2 > .Comment > .CommentBox {
+	display: block;
+}
+.RecipeDetailsWrapper > .RecipeDetails > .part2 > .Comment > .CommentBox > textarea {
+	display: block;
+	width: 100%;
+	height: 130px;
+	border: none;
+	border-radius: 10px;
+	resize: none;
+	padding: 15px;
+	font-size: 13px;
+	font-weight: 400;
+	text-transform: none;
+}
+.RecipeDetailsWrapper > .RecipeDetails > .part2 > .Comment > .Buttons {
+	display: block;
+	width: 100%;
+	height: 50px;
+}
+.RecipeDetailsWrapper > .RecipeDetails > .part2 > .Comment > .Buttons > button {
+	display: block;
+	background-color: rgba(var(--color-green));
+	border-radius: 10px;
+	width: 100%;
+	height: 100%;
+	color: white;
+	letter-spacing: 1px;
+	font-size: 14px;
+	font-weight: 500;
+}
+
+
+@media only screen and (min-width: 1px) and (max-width: 768px) {
+	.RecipeDetailsWrapper > .RecipeDetails {
+		flex-direction: column;
+		align-items: center;
+	}
+	.RecipeDetailsWrapper > .RecipeDetails > div {
+		min-width: 300px !important;
+		max-width: 650px;
+		width: 80%;
+	}
+	.RecipeDetailsWrapper > .RecipeDetails > div.part1 {
+		margin-right: 0;
+	}
+	.RecipeDetailsWrapper > .RecipeDetails > div.part2 {
+		margin-left: 0;
+	}
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+	.RecipeDetailsWrapper > .RecipeDetails > div.part2 {
+		margin-left: 0;
+	}
+}
+
+@media only screen and (min-width: 1024px) and (max-width: 1200px) {
+	.RecipeDetailsWrapper > .RecipeDetails > div.part2 {
+		margin-left: 50px;
+	}
+}

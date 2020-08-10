@@ -1,0 +1,203 @@
+.MainContainer {
+	z-index: 1;
+	/*position: relative;*/
+	display: block;
+	width: 100%;
+	padding-top: 100px;
+	max-width: 1250px;
+	overflow-y: auto;
+}
+
+@media only screen and (min-width: 1px) and (max-width: 480px) {
+  .MainContainer {
+		width: 100%;
+		padding-top: 10px;
+	}
+}
+@media only screen and (min-width: 480px) and (max-width: 768px) {
+  .MainContainer {
+		width: 95%;
+		padding-top: 40px;
+	}
+}
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  .MainContainer {
+		width: 90%;
+		padding-top: 70px;
+	}
+}
+@media only screen and (min-width: 1024px)  {
+  .MainContainer {
+		width: 80%;
+		padding-top: 100px;
+	}
+}
+
+.Highlighter {
+	background-color: rgba(var(--color-yellow));
+}
+
+.BGIMG {
+	z-index: 0;
+	position: fixed;
+	display: block;
+}
+
+.BGIMG.BottomLeft {
+	bottom: -100px;
+	left: -150px;
+}
+.BGIMG.TopRight {
+	top: -175px;
+	right : -75px;
+}
+.BGIMG.Pizza {
+	top: 40%;
+	left: 15%;
+}
+.BGIMG.Cheese {
+	bottom: -43px;
+	right: -57px;
+}
+.BGIMG.BabyTomatoe {
+	bottom: 145px;
+	right : 80px;
+}
+
+.Content {
+	/*position: relative;*/
+	display: block;
+	overflow-y: auto;
+}
+
+.Content .SearchBar {
+	z-index: 1;
+	position: relative;
+	display: flex;
+	flex-direction: row-reverse;
+	justify-content: left;
+	align-items: center;
+	width: 100%;
+	max-width: 500px;
+}
+
+.Content .SearchBar label {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-width: 50px;
+	height: 50px;
+	border: none;
+	margin: 0;
+	margin-right: 10px;
+}
+
+.Content .SearchBar label:after {
+	z-index: -1;
+	position: absolute;
+	display: block;
+	content: "";
+	left: 0;
+	top: 0;
+	width: 50px;
+	height: 50px;
+	background-color: rgba(var(--bg-color-1));
+	border-radius: 50px;
+	box-shadow: 0px 0px 10px -7px rgba(var(--color));
+	transition: 0.2s ease-in;
+}
+
+.Content .SearchBar label img {
+	flex-grow: 0;
+	flex-shrink: 0;
+	display: inline-block;
+	justify-content: center;
+	align-items: center;
+}
+
+.Content .SearchBar .tb_search {
+	flex-grow: 1;
+	flex-shrink: 0;
+	display: block;
+	background-color: transparent;
+	border: none;
+	height: 100%;
+	font-size: 18px;
+	padding: 0px 10px;
+}
+
+.Content .SearchBar .tb_search:focus ~ label:after,
+.Content .SearchBar .tb_search:active ~ label:after,
+.Content .SearchBar .tb_search:valid ~ label:after {
+	width: 100%;
+	transition: 0.2s ease-out;
+}
+
+.PageHolder {
+	display: block;
+	margin-top: 20px;
+}
+
+.PageLoading {
+	z-index: -2;
+	position: absolute;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	opacity: 0;
+	visibility: hidden;
+	background-color: rgba(var(--bg-color-2), 0.8);
+}
+.PageLoading.show {
+	z-index: 2;
+	opacity: 1;
+	visibility: visible;
+}
+.PageLoading svg {
+	margin: auto;
+	width: 50%;
+	min-width: 100px;
+	max-width: 200px;
+}
+
+.MainContainer > .Footer {
+	display: block;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: 100px;
+	margin-top: 100px;
+	margin-bottom: 150px;
+}
+.MainContainer > .Footer > div {
+	position: relative;
+	display: flex;
+	align-items: center;
+	width: 100%;
+	white-space: nowrap;
+	text-transform: uppercase;
+	opacity: 0.1;
+	letter-spacing: 1px;
+	font-size: 20px;
+	font-weight: 500;
+}
+.MainContainer > .Footer > div::before,
+.MainContainer > .Footer > div::after {
+	position: relative;
+	display: inline-block;
+	content: "";
+	background-color: black;
+	height: 2px;
+	width: 100%;
+	opacity: 0.5;
+}
+.MainContainer > .Footer > div::before {
+	margin-right: 10px;
+}
+.MainContainer > .Footer > div::after {
+	margin-left: 10px;
+}
