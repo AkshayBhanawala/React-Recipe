@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
+import { Redirect, withRouter } from 'react-router-dom';
 import Config from '../helpers/Config';
 import OverlayRecipeDetails from './_Custom/OverlayRecipeDetails';
 import LazyImage from './LazyImage.component';
@@ -7,7 +7,7 @@ import Heart from '../assets/Icons/Icon feather-heart.png';
 import HeartColored from '../assets/Icons/Icon feather-heart-color.png';
 import './Recipes.component.css';
 
-export default class RecipesSearch extends Component {
+class RecipesSearch extends Component {
 	static displayName = 'RecipesSearch';
 	_isMounted = false;
 	PageLoadingPlaceholder = undefined;
@@ -43,16 +43,15 @@ export default class RecipesSearch extends Component {
 	}
 
 	getRecipes() {
-		let redirectHome = true;
+		let redirectBack = true;
 		const searchQ = this.props.searchQ || this.props.match.params.searchQ;
 		let recipes = localStorage.getItem(Config.LSNames.recipes);
 
 		if (searchQ && recipes) {
 			recipes = JSON.parse(recipes);
 			recipes = recipes.filter((obj) => obj.name.toLowerCase().includes(searchQ.toLowerCase()));
-			console.log(searchQ, recipes)
 			if (recipes && recipes.length > 0) {
-				redirectHome = false;
+				redirectBack = false;
 				this.setState({
 					searchQ: searchQ,
 					_isFetching: false,
@@ -61,17 +60,14 @@ export default class RecipesSearch extends Component {
 				return;
 			}
 		}
-		if (redirectHome) {
-			this.setState({
-				_isFetching: false,
-				redirectHome: true
-			});
+		if (redirectBack) {
+			this.props.history.goBack();
 		}
 	}
 
 	onClick_ViewMore(event, id) {
 		event.stopPropagation();
-		this.setState({ RedirectToDetails: id });
+		this.props.history.push('/' + id);
 	}
 
 	onClick_QuickView(event, id) {
@@ -203,8 +199,9 @@ export default class RecipesSearch extends Component {
 	};
 
 	get_HighlightedSpan(recipeName, searchQ) {
-
 		const HighlightedSpan = recipeName.toLowerCase().replace(searchQ.toLowerCase(), ("<span class='Highlighter'>" + searchQ + "</span>"));
 		return { __html: HighlightedSpan };
 	};
 }
+
+export default withRouter(RecipesSearch);

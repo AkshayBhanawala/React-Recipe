@@ -126,6 +126,7 @@
 .OverlayRecipeDetails .ORecipeCard .part1 .ImageWrapper {
 	width: 100%;
 	height: 90%;
+	overflow: hidden;
 }
 .OverlayRecipeDetails .ORecipeCard .part1 .ImageWrapper div {
 	width: 100%;
@@ -253,6 +254,7 @@
 .OverlayRecipeDetails .ORecipeCard .part2 .Details {
 	display: block;
 	height: 100%;
+	overflow: hidden;
 }
 .OverlayRecipeDetails .ORecipeCard.Black .part2 .Details * {
 	color: rgba(var(--bg-color-1));

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
+import { Redirect, withRouter } from 'react-router-dom';
 import HelperMethods from '../helpers/HelperMethods';
 import Config from '../helpers/Config';
 import LazyImage from './LazyImage.component';
@@ -24,7 +24,6 @@ class RecipeDetails extends Component {
 		this.state = {
 			_isFetching: true,
 			recipe: undefined,
-			redirectHome: false,
 		};
 
 		this.onClick_Back = this.onClick_Back.bind(this)
@@ -44,25 +43,24 @@ class RecipeDetails extends Component {
 	}
 
 	getRecipeData() {
-		let redirectHome = true;
+		let redirectBack = true;
 		const { id } = this.props.match.params;
 		let recipes = localStorage.getItem(Config.LSNames.recipes);
 		if (id && recipes) {
 			recipes = JSON.parse(recipes);
 			let recipe = recipes.find((obj) => obj.id === parseInt(id) );
 			if (recipe) {
-				redirectHome = false;
+				redirectBack = false;
 				this.setState({
 					_isFetching: false,
 					recipe: recipe
 				});
+				document.title = recipe.name;
 				return;
 			}
 		}
-		if (redirectHome) {
-			this.setState({
-				redirectHome: true
-			});
+		if (redirectBack) {
+			this.props.history.goBack();
 		}
 	}
 
@@ -77,15 +75,10 @@ class RecipeDetails extends Component {
 	}
 
 	onClick_Back() {
-		this.setState({
-			redirectHome: true
-		});
+		this.props.history.goBack();
 	}
 
 	render() {
-		if (this.state.redirectHome) {
-			return (<Redirect to="/" />);
-		}
 		this.render_PageLoader();
 		if (this.state._isFetching) {
 			return (<></>);
@@ -174,4 +167,4 @@ class RecipeDetails extends Component {
 
 }
 
-export default RecipeDetails;
+export default withRouter(RecipeDetails);

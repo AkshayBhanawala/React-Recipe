@@ -5,7 +5,6 @@ const getServerURL = () => {
 	} else {
 		url = window.location.origin;
 	}
-	console.log(url + "/API")
 	return (url + "/API");
 }
 

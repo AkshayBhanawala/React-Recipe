@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Container } from 'reactstrap';
-import { Switch, Route, Redirect } from "react-router-dom";
+import { Switch, Route, Redirect, withRouter } from "react-router-dom";
 import Config from './helpers/Config';
 import SearchIcon from './assets/Icons/Icon feather-search.png'
 import Recipes from './components/Recipes.component';
@@ -14,7 +14,7 @@ import BGIMG_BabyTomatoe from './assets/Images/Illustration5.png';
 import SVGLoading from './components/_Custom/SVGLoading';
 import './App.css';
 
-export default class App extends Component {
+class App extends Component {
 	static displayName = 'App';
 	_isMounted = false;
 
@@ -36,6 +36,7 @@ export default class App extends Component {
 		this._isMounted = true;
 		if (Config.isDebug) console.log("App", "Mounted");
 		// Code to run when component is loaded
+		//this.props.history.push('/');
 	}
 
 	componentWillUnmount() {
@@ -48,26 +49,9 @@ export default class App extends Component {
 			return true;
 		}
 		if (this.TB_SearchQRef.current.value) {
-			this.setState({
-				searchQ: this.TB_SearchQRef.current.value,
-				redirectToSearch: true
-			});
+			this.props.history.push(`/search/${this.TB_SearchQRef.current.value}`);
 		} else {
-			var CurrentRoute = "";
-			var HomeRoute = "";
-			if (Config.isHashRoute) {
-				CurrentRoute = window.location.hash;
-				HomeRoute = "/";
-			} else {
-				CurrentRoute = window.location.path;
-				HomeRoute = "#/";
-			}
-			if (CurrentRoute !== HomeRoute) {
-				this.setState({
-					searchQ: "",
-					redirectToHome: true
-				});
-			}
+			this.props.history.goBack();
 		}
 		return false;
 	}
@@ -76,7 +60,6 @@ export default class App extends Component {
 		if (Config.isDebug) console.log("App", "render", this.state);
 		return (
 			<>
-				{(this.state.redirectToSearch) ? <Redirect to={`/search/${this.state.searchQ}`} /> : <></>}
 				{(this.state.redirectToHome) ? <Redirect to={`/`} /> : <></>}
 				<div className="PageLoading show" ref={this.LoadingRef}><SVGLoading /></div>
 				<img alt="" className="BGIMG BottomLeft" src={BGIMG_BottomLeft} />
@@ -94,9 +77,8 @@ export default class App extends Component {
 						</div>
 						<div className="PageHolder">
 							<Switch>
-								<Route path="/" exact component={() => <Recipes PageLoadingPlaceholder={this.LoadingRef} />} />
+								<Route path={["/", "/search/:searchQ"]} exact component={(props) => <Recipes {...props} PageLoadingPlaceholder={this.LoadingRef} />} />
 								<Route path="/:id" exact component={(props) => <RecipeDetails {...props} PageLoadingPlaceholder={this.LoadingRef} />} />
-								<Route path="/search/:searchQ" exact component={(props) => <RecipesSearch {...props} searchQ={this.state.searchQ} PageLoadingPlaceholder={this.LoadingRef} />} />
 							</Switch>
 						</div>
 					</div>
@@ -108,3 +90,5 @@ export default class App extends Component {
 		)
 	};
 }
+
+export default withRouter(App);

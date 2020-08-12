@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
+import { Redirect, withRouter } from 'react-router-dom';
 import axios from 'axios';
 import Config from '../helpers/Config';
 import APIRoutes from '../helpers/APIRoutesForClient';
@@ -9,10 +9,11 @@ import Heart from '../assets/Icons/Icon feather-heart.png';
 import HeartColored from '../assets/Icons/Icon feather-heart-color.png';
 import './Recipes.component.css';
 
-export default class Recipes extends Component {
+class Recipes extends Component {
 	static displayName = 'Recipes';
 	_isMounted = false;
 	PageLoadingPlaceholder = undefined;
+	static serverDataLoaded = false;
 
 	constructor(props) {
 		super(props);
@@ -21,8 +22,8 @@ export default class Recipes extends Component {
 
 		this.state = {
 			_isFetching: true,
-			recipes: undefined,
-			RedirectToDetails: undefined,
+			serverRecipes: undefined,
+			searchRecipes: undefined,
 			ORecipeDetails: undefined
 		};
 		this.onClick_Like = this.onClick_Like.bind(this);
@@ -43,7 +44,22 @@ export default class Recipes extends Component {
 		if (Config.isDebug) console.log(this.constructor.displayName, "Unmounted");
 	}
 
-	getRecipes() {
+	async getRecipes() {
+		if (this.props.searchQ || this.props.match.params.searchQ) {
+			if (!localStorage.getItem(Config.LSNames.recipes && !Recipes.serverDataLoaded)) {
+				await this.getServerRecipes();
+				this.setLocalRecipes();
+			}
+			this.getSearchRecipes();
+		} else if (!Recipes.serverDataLoaded) {
+			this.getServerRecipes();
+		} else if (Recipes.serverDataLoaded) {
+			this.setState({ _isFetching: false });
+			this.setLocalRecipes();
+		}
+	}
+
+	async getServerRecipes() {
 		this.setState({
 			_isFetching: true
 		});
@@ -52,9 +68,9 @@ export default class Recipes extends Component {
 			if (this._isMounted) {
 				this.setState({
 					_isFetching: false,
-					recipes: res.data
+					serverRecipes: res.data
 				}, () => {
-						localStorage.setItem(Config.LSNames.recipes, JSON.stringify(this.state.recipes));
+					localStorage.setItem(Config.LSNames.recipes, JSON.stringify(this.state.serverRecipes));
 				});
 			}
 		}).catch((err) => {
@@ -63,20 +79,39 @@ export default class Recipes extends Component {
 			});
 			if (Config.isDebug) console.log(this.constructor.displayName, "getRecipes", "error:", err);
 		});
+		Recipes.serverDataLoaded = true;
+	}
+
+	getSearchRecipes() {
+		const searchQ = this.props.searchQ || this.props.match.params.searchQ;
+		let recipes = localStorage.getItem(Config.LSNames.recipes);
+		recipes = JSON.parse(recipes);
+		recipes = recipes.filter((obj) => obj.name.toLowerCase().includes(searchQ.toLowerCase()));
+		if (recipes && recipes.length > 0) {
+			this.setState({
+				searchQ: searchQ,
+				searchRecipes: recipes
+			});
+		}
+	}
+
+	setLocalRecipes() {
+		this.setState({
+			serverRecipes: JSON.parse(localStorage.getItem(Config.LSNames.recipes))
+		});
 	}
 
 	onClick_ViewMore(event, id) {
 		event.stopPropagation();
-		this.setState({ RedirectToDetails: id });
+		this.props.history.push('/' + id);
 	}
 
 	onClick_QuickView(event, id) {
 		event.stopPropagation();
-		const recipe = this.state.recipes.find((obj) => obj.id === id);
 		this.setState({
 			ORecipeDetails: {
 				show: true,
-				recipe: recipe
+				recipe: this.state.serverRecipes.find((obj) => obj.id === id)
 			}
 		});
 	}
@@ -140,10 +175,14 @@ export default class Recipes extends Component {
 	}
 
 	render_Recipes() {
-		if (this.state.RedirectToDetails || this.state.RedirectToDetails === 0) {
-			return (<Redirect to={"/" + this.state.RedirectToDetails} />);
+		let recipes = [];
+		let counter = 0;
+		if (this.props.searchQ || this.props.match.params.searchQ) {
+			recipes = this.state.searchRecipes;
+		} else {
+			recipes = this.state.serverRecipes;
 		}
-		if (!this.state.recipes || this.state.recipes.length === 0) {
+		if (!recipes || recipes.length === 0) {
 			return (
 				<div className="NoRecipes">
 					<span className="Title">Ohh no!!!</span>
@@ -154,11 +193,11 @@ export default class Recipes extends Component {
 		return (
 			<div className="RecipeCards">
 				{
-					this.state.recipes.map((recipe) => {
+					recipes.map((recipe) => {
 						return (
 							<div
 								key={'key_' + recipe.id}
-								className={`RecipeCard ${(recipe.id % 2 === 0) ? "Black" : "White"}`}
+								className={`RecipeCard ${(counter % 2 === 0) ? "Black" : "White"}`}
 								title={recipe.name}
 							>
 								{(recipe.label) ? <span className="label">{recipe.label}</span> : ""}
@@ -190,11 +229,18 @@ export default class Recipes extends Component {
 										<button onClick={(event) => this.onClick_QuickView(event, recipe.id)}>Quick View</button>
 									</div>
 								</div>
+								{counter++}
 							</div>
-							);
-						})
-					}
+						);
+					})
+				}
 			</div>
 		);
 	};
+
+	get_HighlightedSpan(recipeName, searchQ) {
+		const HighlightedSpan = recipeName.toLowerCase().replace(searchQ.toLowerCase(), ("<span class='Highlighter'>" + searchQ + "</span>"));
+		return { __html: HighlightedSpan };
+	};
 }
+export default withRouter(Recipes);

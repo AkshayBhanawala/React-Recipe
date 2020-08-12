@@ -156,15 +156,11 @@
 	bottom: 0;
 	left: 0;
 	width: 100%;
-	height: 60%;
 	padding: 25px;
-	padding-top: 25%;
+	padding-top: 50%;
 }
 .RecipeCard:hover .Details {
 	transform: translateY(-60px);
-}
-.RecipeCard.Black .Details {
-	padding-top: 35%;
 }
 .RecipeCard.Black .Details {
 	background: rgb(0,0,0);
@@ -190,10 +186,6 @@
 	z-index: 3;
 	position: absolute;
 	right: 25px;
-	bottom: 35%;
-}
-.RecipeCard.Black .Details .Like {
-	bottom: 39%;
 }
 .RecipeCard .Details .Like .cb_like {
 	display: none;
