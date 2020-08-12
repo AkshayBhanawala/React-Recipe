@@ -132,6 +132,9 @@
 	width: 100%;
 	transition: 0.2s ease-out;
 }
+.Content .SearchBar .tb_search:invalid {
+	box-shadow: none;
+}
 
 .PageHolder {
 	display: block;

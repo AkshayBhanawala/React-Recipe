@@ -17,7 +17,6 @@ export default class RecipesSearch extends Component {
 
 		this.PageLoadingPlaceholder = this.props.PageLoadingPlaceholder;
 
-		console.log("HEEEEEEEEEEEEEEEEEEEEEEEEEE")
 		this.state = {
 			searchQ: "",
 			_isFetching: true,
