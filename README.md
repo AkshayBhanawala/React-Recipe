@@ -1,7 +1,7 @@
 # [Recipe [React]](https://th3az-react-recipe.herokuapp.com/)
 An app that I built for an online challenge. \
 It was just about making an exact-like design of a couple of webpage images of the same website. \
-Recipe images are lazy loaded on the page and each recipe can be viewed by 3 different ways. \
+Recipe images are lazy loaded on the page and each recipe can be viewed by 3 different ways.
  - List Card
  - Overlay Card/Window
  - Full Page
