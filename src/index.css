@@ -58,7 +58,6 @@ body * {
 	font-weight: 300;
 	box-sizing: border-box;
 	outline: 0 !important;
-	transition: 0.5s;
 }
 
 body * input {

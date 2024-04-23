@@ -1,3 +1,4 @@
+import './App.css';
 import React, { Component } from 'react';
 import { Container } from 'reactstrap';
 import { Switch, Route, Redirect, withRouter } from "react-router-dom";
@@ -5,19 +6,17 @@ import Config from './helpers/Config';
 import SearchIcon from './assets/Icons/Icon feather-search.png'
 import Recipes from './components/Recipes.component';
 import RecipeDetails from './components/RecipeDetails.component';
-import RecipesSearch from './components/RecipesSearch.component';
 import BGIMG_BottomLeft from './assets/Images/Illustration1.png';
 import BGIMG_TopRight from './assets/Images/Illustration2.png';
 import BGIMG_Pizza from './assets/Images/Illustration3.png';
 import BGIMG_Cheese from './assets/Images/Illustration4.png';
 import BGIMG_BabyTomatoe from './assets/Images/Illustration5.png';
 import SVGLoading from './components/_Custom/SVGLoading';
-import './App.css';
+import RecipesSearch from './components/RecipesSearch.component';
 
 class App extends Component {
 	static displayName = 'App';
 	_isMounted = false;
-
 	LoadingRef = React.createRef();
 	TB_SearchQRef = React.createRef();
 
@@ -45,12 +44,18 @@ class App extends Component {
 	}
 
 	onKeyUp_TBSearchQ(event) {
-		if (event.keyCode !== 13) {
-			return true;
-		}
+		// if (event.keyCode !== 13) {
+		// 	return true;
+		// }
+		const isCurrentlySearchPath = this.props.history.location.pathname.includes('/search/');
 		if (this.TB_SearchQRef.current.value) {
-			this.props.history.push(`/search/${this.TB_SearchQRef.current.value}`);
-		} else {
+			const searchRoute = `/search/${this.TB_SearchQRef.current.value}`;
+			if (isCurrentlySearchPath) {
+				this.props.history.replace(searchRoute);
+			} else {
+				this.props.history.push(searchRoute)
+			}
+		} else if (isCurrentlySearchPath) {
 			this.props.history.goBack();
 		}
 		return false;
@@ -77,7 +82,9 @@ class App extends Component {
 						</div>
 						<div className="PageHolder">
 							<Switch>
-								<Route path={["/", "/search/:searchQ"]} exact component={(props) => <Recipes {...props} PageLoadingPlaceholder={this.LoadingRef} />} />
+								<Route path={["/"]} exact component={(props) => <Recipes {...props} PageLoadingPlaceholder={this.LoadingRef} />} />
+								{/* <Route path={["/search/:searchQ"]} exact component={(props) => <Recipes {...props} PageLoadingPlaceholder={this.LoadingRef} />} /> */}
+								<Route path={["/search/:searchQ"]} exact component={(props) => <RecipesSearch {...props} PageLoadingPlaceholder={this.LoadingRef} />} />
 								<Route path="/:id" exact component={(props) => <RecipeDetails {...props} PageLoadingPlaceholder={this.LoadingRef} />} />
 							</Switch>
 						</div>

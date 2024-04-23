@@ -1,5 +1,6 @@
+import './Recipes.component.css';
 import React, { Component } from 'react';
-import { Redirect, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import axios from 'axios';
 import Config from '../helpers/Config';
 import APIRoutes from '../helpers/APIRoutesForClient';
@@ -7,7 +8,7 @@ import OverlayRecipeDetails from './_Custom/OverlayRecipeDetails';
 import LazyImage from './LazyImage.component';
 import Heart from '../assets/Icons/Icon feather-heart.png';
 import HeartColored from '../assets/Icons/Icon feather-heart-color.png';
-import './Recipes.component.css';
+import HelperMethods from '../helpers/HelperMethods';
 
 class Recipes extends Component {
 	static displayName = 'Recipes';
@@ -59,13 +60,23 @@ class Recipes extends Component {
 		}
 	}
 
-	async getServerRecipes() {
+	async getServerRecipes(useUiRecipeJson = false) {
 		this.setState({
 			_isFetching: true
 		});
-		axios.get(APIRoutes.GetRecipes, undefined).then((res) => {
+		const urlToUse = useUiRecipeJson ? APIRoutes.GetRecipesFromUI : APIRoutes.GetRecipes;
+		axios.get(urlToUse, undefined).then((res) => {
 			if (Config.isDebug) console.log(this.constructor.displayName, "getRecipes", "response:", res);
 			if (this._isMounted) {
+				if (res?.data?.length) {
+					res.data.forEach(i => {
+						i.description = i.description ? i.description : HelperMethods.get_LoremIpsumText()
+						i.cost = i.cost ? i.cost : HelperMethods.get_RandomInteger(100, 500);
+						i.calories = i.calories ? i.calories : HelperMethods.get_RandomInteger(100, 500);
+						i.servings = i.servings ? i.servings : HelperMethods.get_RandomInteger(1, 10);
+						i.totalTime = i.totalTime ? i.totalTime : HelperMethods.get_RandomInteger(10, 120);
+					});
+				}
 				this.setState({
 					_isFetching: false,
 					serverRecipes: res.data
@@ -77,6 +88,7 @@ class Recipes extends Component {
 			this.setState({
 				_isFetching: false
 			});
+			this.getServerRecipes(true);
 			if (Config.isDebug) console.log(this.constructor.displayName, "getRecipes", "error:", err);
 		});
 		Recipes.serverDataLoaded = true;
@@ -86,7 +98,7 @@ class Recipes extends Component {
 		const searchQ = this.props.searchQ || this.props.match.params.searchQ;
 		let recipes = localStorage.getItem(Config.LSNames.recipes);
 		recipes = JSON.parse(recipes);
-		recipes = recipes.filter((obj) => obj.name.toLowerCase().includes(searchQ.toLowerCase()));
+		recipes = recipes.filter((obj) => obj.title.toLowerCase().includes(searchQ.toLowerCase()));
 		if (recipes && recipes.length > 0) {
 			this.setState({
 				searchQ: searchQ,
@@ -198,11 +210,11 @@ class Recipes extends Component {
 							<div
 								key={'key_' + recipe.id}
 								className={`RecipeCard ${(counter % 2 === 0) ? "Black" : "White"}`}
-								title={recipe.name}
+								title={recipe.title}
 							>
-								{(recipe.label) ? <span className="label">{recipe.label}</span> : ""}
+								{(recipe.cuisine) ? <span className="label">{recipe.cuisine}</span> : ""}
 								<div className="ImageWrapper">
-									<LazyImage alt={recipe.name} src={recipe.image} />
+									<LazyImage alt={recipe.title} src={recipe.photoUrl} />
 								</div>
 								<div className="Details">
 									<div className="Like">
@@ -213,10 +225,10 @@ class Recipes extends Component {
 										</label>
 									</div>
 									<div className="Name">
-										<span>{recipe.name}</span>
+										<span>{recipe.title}</span>
 									</div>
 									<div className="extras">
-										<span className="price">$ {recipe.price}</span>
+										<span className="price">$ {recipe.cost}</span>
 										<span className="category">{recipe.category}</span>
 									</div>
 									<div className="Description">

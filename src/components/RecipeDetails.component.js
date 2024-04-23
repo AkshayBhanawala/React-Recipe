@@ -1,12 +1,12 @@
+import './RecipeDetails.component.css';
 import React, { Component } from 'react';
-import { Redirect, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import HelperMethods from '../helpers/HelperMethods';
 import Config from '../helpers/Config';
 import LazyImage from './LazyImage.component';
 import Heart from '../assets/Icons/Icon feather-heart.png';
 import HeartColored from '../assets/Icons/Icon feather-heart-color.png';
 import PlayCircle from '../assets/Icons/Icon ionic-ios-play-circle.png';
-import './RecipeDetails.component.css';
 
 class RecipeDetails extends Component {
 	static displayName = 'RecipeDetails';
@@ -55,7 +55,7 @@ class RecipeDetails extends Component {
 					_isFetching: false,
 					recipe: recipe
 				});
-				document.title = recipe.name;
+				document.title = recipe.title;
 				return;
 			}
 		}
@@ -109,26 +109,26 @@ class RecipeDetails extends Component {
 				<div className="RecipeDetailsWrapper">
 					<div
 						className="RecipeDetails"
-						title={this.state.recipe.name}
+						title={this.state.recipe.title}
 					>
 						<div className="part1">
 							<div className="ImageWrapper">
 								<div className="ImagePlayCover"><img alt="Play" src={PlayCircle}/><span className="Title">Play Video</span></div>
-								<LazyImage alt={this.state.recipe.name} src={this.state.recipe.image} />
+								<LazyImage alt={this.state.recipe.title} src={this.state.recipe.photoUrl} />
 							</div>
 							<div className="Ingredients">
 								<span className="title">Ingredients :</span>
-								<span className="content">{HelperMethods.get_LoremIpsumText()}</span>
+								<span className="content">{this.state.recipe.ingredients}</span>
 							</div>
 							<div className="Preparation">
 								<span className="title">How to prepare :</span>
-								<span className="content">{HelperMethods.get_LoremIpsumText()}</span>
+								<span className="content">{this.state.recipe.directions}</span>
 							</div>
 						</div>
 						<div className="part2">
 							<div className="Details">
 								<div className="Name">
-									<span>{this.state.recipe.name}</span>
+									<span>{this.state.recipe.title}</span>
 								</div>
 								<div className="Description">
 									<span>{this.state.recipe.description}</span>
@@ -137,9 +137,9 @@ class RecipeDetails extends Component {
 									<span>{HelperMethods.get_LoremIpsumText()}</span>
 								</div>
 								<div className="Extras">
-									<div className="Ingredients"><span className="Value">{HelperMethods.get_RandomInteger(1, 10)}</span><span className="Text">ingredients</span></div>
-									<div className="Price"><span className="Value">{HelperMethods.get_RandomInteger(100, 500)}</span><span className="Text">bucks</span></div>
-									<div className="Time"><span className="Value">{HelperMethods.get_RandomInteger(10, 120)}</span><span className="Text">minutes</span></div>
+									<div className="Ingredients"><span className="Value">{this.state.recipe.calories}</span><span className="Text">calories</span></div>
+									<div className="Price"><span className="Value">{this.state.recipe.servings}</span><span className="Text">servings</span></div>
+									<div className="Time"><span className="Value">{this.state.recipe.totalTime}</span><span className="Text">total time</span></div>
 								</div>
 							</div>
 							<div className="Favourite">

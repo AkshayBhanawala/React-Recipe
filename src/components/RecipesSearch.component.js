@@ -1,3 +1,4 @@
+import './Recipes.component.css';
 import React, { Component } from 'react';
 import { Redirect, withRouter } from 'react-router-dom';
 import Config from '../helpers/Config';
@@ -5,7 +6,6 @@ import OverlayRecipeDetails from './_Custom/OverlayRecipeDetails';
 import LazyImage from './LazyImage.component';
 import Heart from '../assets/Icons/Icon feather-heart.png';
 import HeartColored from '../assets/Icons/Icon feather-heart-color.png';
-import './Recipes.component.css';
 
 class RecipesSearch extends Component {
 	static displayName = 'RecipesSearch';
@@ -49,19 +49,18 @@ class RecipesSearch extends Component {
 
 		if (searchQ && recipes) {
 			recipes = JSON.parse(recipes);
-			recipes = recipes.filter((obj) => obj.name.toLowerCase().includes(searchQ.toLowerCase()));
+			recipes = recipes.filter((obj) => obj.title.toLowerCase().includes(searchQ.toLowerCase()));
 			if (recipes && recipes.length > 0) {
 				redirectBack = false;
-				this.setState({
-					searchQ: searchQ,
-					_isFetching: false,
-					recipes: recipes
-				});
-				return;
 			}
+			this.setState({
+				searchQ: searchQ,
+				_isFetching: false,
+				recipes: recipes
+			});
 		}
 		if (redirectBack) {
-			this.props.history.goBack();
+			// this.props.history.goBack();
 		}
 	}
 
@@ -159,11 +158,11 @@ class RecipesSearch extends Component {
 							<div
 								key={'key_' + recipe.id}
 								className={`RecipeCard ${(recipe.id % 2 === 0) ? "Black" : "White"}`}
-								title={recipe.name}
+								title={recipe.title}
 							>
-								{(recipe.label) ? <span className="label">{recipe.label}</span> : ""}
+								{(recipe.cuisine) ? <span className="label">{recipe.cuisine}</span> : ""}
 								<div className="ImageWrapper">
-									<LazyImage alt={recipe.name} src={recipe.image} />
+									<LazyImage alt={recipe.title} src={recipe.photoUrl} />
 								</div>
 								<div className="Details">
 									<div className="Like">
@@ -174,10 +173,10 @@ class RecipesSearch extends Component {
 										</label>
 									</div>
 									<div className="Name">
-										<span dangerouslySetInnerHTML={this.get_HighlightedSpan(recipe.name, this.state.searchQ)}></span>
+										<span dangerouslySetInnerHTML={this.get_HighlightedSpan(recipe.title, this.state.searchQ)}></span>
 									</div>
 									<div className="extras">
-										<span className="price">$ {recipe.price}</span>
+										<span className="price">$ {recipe.cost}</span>
 										<span className="category">{recipe.category}</span>
 									</div>
 									<div className="Description">

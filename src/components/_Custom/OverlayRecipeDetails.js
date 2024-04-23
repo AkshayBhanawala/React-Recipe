@@ -1,3 +1,4 @@
+import './OverlayRecipeDetails.css';
 import React, { Component } from 'react';
 import HelperMethods from '../../helpers/HelperMethods';
 import Config from '../../helpers/Config';
@@ -5,7 +6,6 @@ import SVGClose from './SVGClose';
 import LazyImage from '../LazyImage.component';
 import Heart from '../../assets/Icons/Icon feather-heart.png';
 import HeartColored from '../../assets/Icons/Icon feather-heart-color.png';
-import './OverlayRecipeDetails.css';
 
 class OverlayRecipeDetails extends Component {
 	static displayName = 'OverlayRecipeDetails';
@@ -86,12 +86,12 @@ class OverlayRecipeDetails extends Component {
 					<div className="ORecipeCardWrapper">
 						<div
 							className={`ORecipeCard ${(this.props.recipe.id % 2 === 0) ? "Black" : "White"}`}
-							title={this.props.recipe.name}
+							title={this.props.recipe.title}
 						>
 							<div className="part1">
-								{(this.props.recipe.label) ? <span className="label">{this.props.recipe.label}</span> : ""}
+								{(this.props.recipe.cuisine) ? <span className="label">{this.props.recipe.cuisine}</span> : ""}
 								<div className="ImageWrapper">
-									<LazyImage alt={this.props.recipe.name} src={this.props.recipe.image} />
+									<LazyImage alt={this.props.recipe.title} src={this.props.recipe.photoUrl} />
 								</div>
 								<div className="Details">
 									<div className="Like">
@@ -102,7 +102,7 @@ class OverlayRecipeDetails extends Component {
 										</label>
 									</div>
 									<div className="extras">
-										<span className="price">$ {this.props.recipe.price}</span>
+										<span className="price">$ {this.props.recipe.cost}</span>
 										<span className="category">{this.props.recipe.category}</span>
 									</div>
 								</div>
@@ -110,7 +110,7 @@ class OverlayRecipeDetails extends Component {
 							<div className="part2">
 								<div className="Details">
 									<div className="Name">
-										<span>{this.props.recipe.name}</span>
+										<span>{this.props.recipe.title}</span>
 									</div>
 									<div className="Description">
 										<span>{this.props.recipe.description}</span>

@@ -28,8 +28,10 @@ const Placeholder = styled.div`
 
 const StyledImage = styled.img`
 	display: block;
-	height: 100%;
 	margin: auto;
+	height: 100%;
+	width: 100%;
+	object-fit: cover;
 `;
 
 const LazyImage = ({ src, alt }) => {
