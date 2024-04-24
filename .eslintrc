@@ -1,0 +1,9 @@
+{
+  "extends": [
+		"@babel/plugin-transform-private-property-in-object",
+		"@babel/plugin-transform-nullish-coalescing-operator",
+		"@babel/plugin-transform-numeric-separator",
+		"@babel/plugin-transform-class-properties",
+		"next/core-web-vitals"
+	]
+}

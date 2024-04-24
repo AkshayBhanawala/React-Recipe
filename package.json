@@ -4,7 +4,6 @@
 	"dependencies": {
 		"axios": "^0.19.2",
 		"bootstrap": "^4.5.0",
-		"create-react-app": "^3.4.1",
 		"express": "^4.17.1",
 		"jquery": "^3.5.1",
 		"path": "^0.12.7",
@@ -29,10 +28,16 @@
 		"start": "react-scripts start",
 		"build": "react-scripts build",
 		"test": "react-scripts test",
-		"eject": "react-scripts eject"
+		"eject": "react-scripts eject",
+		"buildAndMove": "react-scripts build && npm run moveBuildFiles",
+		"moveBuildFiles": "XCOPY /S /Y build\\* React-Recipe\\ && RMDIR /S /Q build && ROBOCOPY /MOVE /MIR React-Recipe build\\React-Recipe",
+		"serveBuild": "http-server ./build --port 3001 -a 0.0.0.0 --cors -c-1 -d false --gzip --brotli --utc --robots --no-dotfiles"
 	},
 	"eslintConfig": {
-		"extends": "react-app"
+		"extends": [
+			"react-app",
+			"react-app/jest"
+		]
 	},
 	"browserslist": {
 		"production": [
