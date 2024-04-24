@@ -18,7 +18,7 @@ Local search functionality is there to allow searching of recipe by name.
 ---
 
 ### Deployed URL
-https://th3az-react-recipe.herokuapp.com/
+https://akshaybhanawala.github.io/[Projects]/React-Recipe/
 
 ---
 
