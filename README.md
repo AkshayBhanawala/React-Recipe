@@ -1,4 +1,4 @@
-# [Recipe [React]](https://akshaybhanawala.github.io/[Projects]/React-Recipe/)
+# [Recipe [React]](https://akshaybhanawala.onrender.com/[Projects]/React-Recipe/#/)
 An app that I built for an online challenge. \
 It was just about making an exact-like design of a couple of webpage images of the same website. \
 Recipe images are lazy loaded on the page and each recipe can be viewed by 3 different ways.
@@ -18,7 +18,7 @@ Local search functionality is there to allow searching of recipe by name.
 ---
 
 ### Deployed URL
-https://akshaybhanawala.github.io/[Projects]/React-Recipe/
+https://akshaybhanawala.onrender.com/[Projects]/React-Recipe/#/
 
 ---
 
